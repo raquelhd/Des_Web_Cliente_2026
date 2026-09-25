@@ -1,0 +1,19 @@
+# Ficheros del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Configuración del editor
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Variables de entorno
+.env
+.env.local
+
+# Carpetas de build
+dist/
+build/
