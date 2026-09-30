@@ -8,6 +8,27 @@
 		<h1>Ejemplo web service con JavaScript (fetch)</h1>
 		<p>Abre la consola (F12) para ver la respuesta.</p>
 		<script>
+			// ==================================================================================
+			//  ¡IMPORTANTE! Este ejemplo NO funciona abriendo el HTML con doble clic (file://).
+			//
+			//  Si lo abres así, la consola muestra:
+			//     Access to XMLHttpRequest at 'file:///.../discs.json' from origin 'null'
+			//     has been blocked by CORS policy ...
+			//  y el código HTTP es 0 (la petición ni siquiera ha salido).
+			//
+			//  ¿Por qué? Una página abierta desde disco tiene origen "null": el navegador no
+			//  puede saber "de dónde viene", así que por seguridad le prohíbe pedir otros
+			//  ficheros, aunque estén en la misma carpeta. Es la política CORS
+			//  (Cross-Origin Resource Sharing): un script solo puede pedir recursos a SU
+			//  MISMO origen (protocolo + dominio + puerto), salvo que el servidor de destino
+			//  lo autorice con la cabecera Access-Control-Allow-Origin.
+			//
+			//  Solución: servir la página con un servidor, aunque sea local. En VS Code:
+			//  clic derecho sobre el HTML -> "Open with Live Server". La URL pasa a ser
+			//  http://127.0.0.1:5500/... y discs.json es del MISMO origen, así que se permite.
+			//  (Las dos APIs remotas de abajo funcionan porque envían Access-Control-Allow-Origin: *)
+			// ==================================================================================
+
 			// ---------------------------------------------------------------
 			// URL del servicio. Deja activa SOLO una de las opciones.
 			// Todas devuelven JSON y permiten CORS desde cualquier origen.
@@ -16,10 +37,11 @@
 			// const url = "https://jsonplaceholder.typicode.com/users";           // 10 usuarios de prueba (API muy estable)
 			// const url = "https://pokeapi.co/api/v2/pokemon/pikachu";            // un objeto grande con muchas propiedades anidadas
 
+			// fetch devuelve una PROMESA: cada .then recibe el resultado del paso anterior
 			fetch(url)
-				.then(response => response.json())
-				.then(json => console.log(json))
-				.catch(error => console.error("Error en la petición:", error));
+				.then(response => response.json())      // 1) la respuesta llega -> la convertimos a objeto (otra promesa)
+				.then(json => console.log(json))          // 2) ya tenemos el objeto
+				.catch(error => console.error("Error en la petición:", error));   // si algo falla en la cadena
 
 			// Versión equivalente con async/await:
 			// async function cargar() {

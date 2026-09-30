@@ -1,8 +1,10 @@
+// javascript-13.js · Métodos estáticos: pertenecen a la CLASE, no a las instancias.
+
 class Persona {
     constructor(nombre){
         this.nombre = nombre;
     }
-    static saludo() {
+    static saludo() {          // static: se llama como Persona.saludo()
         return "Hola";
     }
 }

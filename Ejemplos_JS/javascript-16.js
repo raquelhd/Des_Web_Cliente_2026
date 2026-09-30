@@ -1,3 +1,10 @@
+// javascript-16.js · Gestión de errores: try / catch / finally / throw
+//   try     -> código que puede fallar
+//   catch   -> se ejecuta SOLO si ha habido error (recibe el objeto de error)
+//   finally -> se ejecuta SIEMPRE, haya error o no
+//   throw   -> lanza un error nuestro
+
+// 1. Error real: la variable pepe no existe -> ReferenceError
 try {
     console.log(pepe);
 } catch (errorCometido) {
@@ -6,6 +13,7 @@ try {
     console.log("En cualquier caso");
 }
 
+// 2. Sin error: no entra en catch, pero finally se ejecuta igual
 try {
     x=5/2;
 } catch (error) {
@@ -14,6 +22,7 @@ try {
     console.log("En cualquier caso");
 }
 
+// 3. Error lanzado por nosotros con throw (aquí se lanza una cadena; también puede ser new Error("..."))
 var x = -2;
 try {
     console.log(x);
@@ -23,5 +32,3 @@ try {
 } finally {
     console.log("En cualquier caso");
 }
-
-

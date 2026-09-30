@@ -24,16 +24,18 @@
        </p>
 
        <script>
+            // Modificar CONTENIDO y ESTILO de elementos ya existentes.
+            // El script va al final del body: los párrafos ya existen cuando se ejecuta.
             var x = document.getElementById("p1");
-            x.innerHTML = "Hola, <span class='clase_z'>¿qué tal?</span>";
-            document.querySelector("p.clase1").innerHTML = "Hello, <span>world</span>";
-            var pp = document.querySelectorAll("p.clase1");
+            x.innerHTML = "Hola, <span class='clase_z'>¿qué tal?</span>";    // innerHTML sustituye el contenido (interpreta etiquetas)
+            document.querySelector("p.clase1").innerHTML = "Hello, <span>world</span>";  // querySelector: el PRIMER p.clase1
+            var pp = document.querySelectorAll("p.clase1");   // querySelectorAll: TODOS (NodeList), se recorre con for
             for (let i=0; i<pp.length; i++) {
-              pp[i].lang="es-ES"; // Solo algunas propiedades
-              pp[i].style.color="blue"; // Color
-              pp[i].innerHTML += "<b> C.Q.D.</b>"; // Se añade al final
+              pp[i].lang="es-ES"; // Solo algunas propiedades (los atributos HTML habituales existen como propiedades)
+              pp[i].style.color="blue"; // Color: style.propiedad cambia el CSS en línea
+              pp[i].innerHTML += "<b> C.Q.D.</b>"; // Se añade al final (+= concatena al contenido actual)
             }
-            pp[0].style.removeProperty("color");
+            pp[0].style.removeProperty("color");   // quita el color solo al primero
        </script>
    </body>
 </html> 

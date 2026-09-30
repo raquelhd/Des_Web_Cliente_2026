@@ -11,7 +11,7 @@
    </head>
    <body>
        <p id="p1" lang="lat" >Lorem ipsum dolor sit amet, consectetur 
-       adipisicing elit. <span id="resaltado">Ut enim ad 
+       adipisicing elit. <span id="pepe">Ut enim ad 
        minim veniam</span>, quis nostrud exercitation.
        </p>
 
@@ -24,17 +24,18 @@
        </p>
 
        <script>
+         // Cambiar ATRIBUTOS (id) y CLASES CSS de un elemento.
          var spResaltado = document.getElementById("resaltado");
-         spResaltado.id = "pepe";
+         spResaltado.id = "pepe";                          // cambiamos su id
 
-         var spResaltado = document.getElementById("pepe");
-         console.log(spResaltado);
+         var spResaltado = document.getElementById("resaltado"); // ya se puede localizar por el id nuevo
+         console.log(spResaltado);                          // muestra el <span> en la consola
 
-         spResaltado.className="azul";
-         spResaltado.classList.add("negrita");
-         spResaltado.classList.remove("azul");
-         spResaltado.classList.toggle("negrita");
-         spResaltado.classList.toggle("negrita");
+         spResaltado.className="azul";                // className SUSTITUYE todas las clases por "azul"
+         spResaltado.classList.add("negrita");        // classList permite trabajar clase a clase: añade
+         spResaltado.classList.remove("azul");        // quita
+         spResaltado.classList.toggle("negrita");     // toggle: si está la quita -> ahora no está
+         spResaltado.classList.toggle("negrita");     // ...y si no está la pone -> vuelve a estar (queda en negrita)
        </script>
    </body>
 </html> 

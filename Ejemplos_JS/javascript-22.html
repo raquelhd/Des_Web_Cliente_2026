@@ -21,18 +21,22 @@
       </div>
 
       <script>
-         var d1 = document.getElementById("d1");
-         var manzana = document.createElement("img");
-         manzana.setAttribute("src", "manzana.png");
-         manzana.style.width="50px";
-         d1.appendChild(manzana);
+         // CREAR, INSERTAR, REEMPLAZAR y ELIMINAR nodos del DOM.
 
+         // 1. Crear una imagen y añadirla al final del div d1
+         var d1 = document.getElementById("d1");
+         var manzana = document.createElement("img");   // crea el elemento (aún no está en la página)
+         manzana.setAttribute("src", "manzana.png");    // atributos
+         manzana.style.width="50px";
+         d1.appendChild(manzana);                       // ahora sí: lo cuelga de d1
+
+         // 2. Crear un párrafo con un nodo de texto e insertarlo ANTES del párrafo 3
          var p = document.createElement("p");
          var t = document.createTextNode("Hola, ¿qué tal?");
          p.appendChild(t);
          var d2 = document.getElementById("d2");
          var p3 = document.getElementById("p3");
-         d2.insertBefore(p, p3);
+         d2.insertBefore(p, p3);                        // padre.insertBefore(nuevo, referencia)
 
          function saludar(nombre) {
            var aviso = document.createElement("p");
@@ -40,16 +44,18 @@
            d1.appendChild(aviso);
          }
 
+         // 3. Sustituir el párrafo 4 por un botón
          var b = document.createElement("button");
          b.innerHTML="Botón 4";
          var p4 = document.getElementById("p4");
-         d2.replaceChild(b, p4);
+         d2.replaceChild(b, p4);                        // padre.replaceChild(nuevo, viejo)
          // El manejador se asigna al BOTÓN (que está en el documento), no a p4 (que ya no lo está),
          // y se le pasa una FUNCIÓN, no un string: "saludar(Pepe)" no haría nada.
          b.onclick = function() { saludar("Pepe"); };
 
+         // 4. Eliminar el párrafo 5
          var p5 = document.getElementById("p5");
-         d2.removeChild(p5);
+         d2.removeChild(p5);                            // padre.removeChild(hijo)  (moderno: p5.remove())
       </script>
    </body>
 </html> 

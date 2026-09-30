@@ -2,22 +2,24 @@
 <html>
 	<head>
 		<title>Ejemplo con JavaScript</title>
+		<!-- Script EXTERNO: las funciones que define (saludar) quedan disponibles para toda la página -->
 		<script type="text/javascript" src="mi_funcion.js"></script>
 	</head>
 	<body>
 		<h1> 
+			<!-- Script EMBEBIDO dentro del <h1>: document.writeln escribe en la página en ese mismo punto -->
 			<script type="text/javascript">
-				var x = 3.2 + 7 / 11.4; 
+				var x = 3.2 + 7 / 11.4;   // operación aritmética; el resultado se concatena al texto
 				document.writeln("Cabecera h1 hecha con JavaScript, x = " + x);
 			</script> 
 		</h1>
 		<h2> 
 			<script type="text/javascript">
 				document.writeln("Cabecera h2 hecha con JavaScript<br>");
-				document.writeln(saludar("clase") + "<br>");
-				document.writeln("Psi: \u03A8, psi: \u0471<br>");
-				document.writeln("Nueva línea: &lt;br&gt; <br>");
-				document.writeln("NO funciona \\n ya que estamos en texto de un elemento HTML\n");
+				document.writeln(saludar("clase") + "<br>");            // llama a la función del fichero externo
+				document.writeln("Psi: \u03A8, psi: \u0471<br>");         // \uXXXX = carácter Unicode
+				document.writeln("Nueva línea: &lt;br&gt; <br>");        // &lt; y &gt; muestran los < > sin interpretarlos
+				document.writeln("NO funciona \\n ya que estamos en texto de un elemento HTML\n"); // en HTML el salto de línea es <br>, no \n
 			</script> 
 		</h2>
 	</body>

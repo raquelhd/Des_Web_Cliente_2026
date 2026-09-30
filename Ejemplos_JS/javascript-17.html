@@ -8,6 +8,27 @@
 		<h1>Ejemplo web service con JavaScript (XMLHttpRequest)</h1>
 		<p>Abre la consola (F12) para ver la respuesta.</p>
 		<script>
+			// ==================================================================================
+			//  ¡IMPORTANTE! Este ejemplo NO funciona abriendo el HTML con doble clic (file://).
+			//
+			//  Si lo abres así, la consola muestra:
+			//     Access to XMLHttpRequest at 'file:///.../discs.json' from origin 'null'
+			//     has been blocked by CORS policy ...
+			//  y el código HTTP es 0 (la petición ni siquiera ha salido).
+			//
+			//  ¿Por qué? Una página abierta desde disco tiene origen "null": el navegador no
+			//  puede saber "de dónde viene", así que por seguridad le prohíbe pedir otros
+			//  ficheros, aunque estén en la misma carpeta. Es la política CORS
+			//  (Cross-Origin Resource Sharing): un script solo puede pedir recursos a SU
+			//  MISMO origen (protocolo + dominio + puerto), salvo que el servidor de destino
+			//  lo autorice con la cabecera Access-Control-Allow-Origin.
+			//
+			//  Solución: servir la página con un servidor, aunque sea local. En VS Code:
+			//  clic derecho sobre el HTML -> "Open with Live Server". La URL pasa a ser
+			//  http://127.0.0.1:5500/... y discs.json es del MISMO origen, así que se permite.
+			//  (Las dos APIs remotas de abajo funcionan porque envían Access-Control-Allow-Origin: *)
+			// ==================================================================================
+
 			// ---------------------------------------------------------------
 			// URL del servicio. Deja activa SOLO una de las opciones.
 			// Todas devuelven JSON y permiten CORS desde cualquier origen.
@@ -16,6 +37,8 @@
 			// var url = "https://jsonplaceholder.typicode.com/users";           // 10 usuarios de prueba (API muy estable)
 			// var url = "https://pokeapi.co/api/v2/pokemon/pikachu";            // un objeto grande con muchas propiedades anidadas
 
+			// Pasos clásicos: 1) crear el objeto, 2) open(método, url, asíncrono), 3) send(),
+			// 4) esperar en onreadystatechange a que readyState sea 4 (respuesta completa)
 			var xhttp = new XMLHttpRequest();
 
 			xhttp.open("GET", url, true);
@@ -26,7 +49,7 @@
 			xhttp.onreadystatechange = function() {
 			  if (this.readyState == 4) {
 			    if (this.status == 200) {
-			      console.log(JSON.parse(this.responseText));
+			      console.log(JSON.parse(this.responseText));   // responseText es texto; JSON.parse lo convierte en objeto
 			    } else {
 			      console.error("Error en la petición. Código HTTP:", this.status);
 			    }

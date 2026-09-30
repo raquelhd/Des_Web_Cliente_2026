@@ -6,33 +6,70 @@
 	</head>
 	<body>
 		<script>
-			var valor1=5;
-			var valor2="5";
+			// ==========================================================
+			//  Comparaciones en JavaScript: == (igualdad) frente a === (igualdad estricta)
+			//
+			//   ==   compara el VALOR y, si los tipos son distintos, CONVIERTE uno al otro
+			//        antes de comparar (5 == "5" -> true).
+			//   ===  compara VALOR y TIPO sin convertir nada (5 === "5" -> false).
+			//
+			//  Regla práctica: usa siempre === (y !==). Solo así evitas sorpresas.
+			//  El resultado se escribe en la página con document.writeln.
+			// ==========================================================
+
+			// ----- 1. Primitivos: número frente a cadena -----
+			var valor1=5;      // number
+			var valor2="5";    // string
 			document.writeln("var valor1=5;<br>var valor2='5';<br><br>");
-			document.writeln("valor1==valor2: " + (valor1==valor2));
+			document.writeln("valor1==valor2: " + (valor1==valor2));    // true: == convierte "5" a 5
 			document.writeln("<br>");
-			document.writeln("valor1===valor2: " + (valor1===valor2));
+			document.writeln("valor1===valor2: " + (valor1===valor2));  // false: distinto tipo (number vs string)
 			document.writeln("<br><br>");
+
+			// ----- 2. Objetos: se comparan por REFERENCIA, no por contenido -----
+			// Dos objetos solo son iguales si son EL MISMO objeto en memoria.
+			// Da igual que tengan las mismas propiedades y valores.
 			var obj1 = {valor:'5'};
-			var obj2 = obj1;
-			var obj3 = {valor:'5'};
-			var obj4 = {valor:5}
+			var obj2 = obj1;          // obj2 apunta al MISMO objeto que obj1
+			var obj3 = {valor:'5'};   // otro objeto distinto, aunque tenga el mismo contenido
+			var obj4 = {valor:5}      // otro objeto más; su valor es number, no string
 			document.writeln("var obj1 = {valor:'5'};<br>var obj2=obj1;" + 
 				"<br>var obj3 = {valor: '5' };<br><br>" );
+
+			// obj1 y obj2 son el mismo objeto -> true con == y con ===
 			document.writeln("obj1==obj2:" + (obj1==obj2) + "<br>");
 			document.writeln("obj1===obj2: " + (obj1===obj2) + "<br><br>");
+
+			// obj1 y obj3 son objetos distintos -> false con los dos, aunque "parezcan" iguales
 			document.writeln("obj1==obj3: " + (obj1==obj3) + "<br>");
 			document.writeln("obj1===obj3: " + (obj1===obj3) + "<br><br>");
+
+			// obj2 es obj1, así que compararlo con obj3 da lo mismo: false
 			document.writeln("obj2==obj3: " + (obj2==obj3) + "<br>");
 			document.writeln("obj2===obj3: " + (obj2===obj3) + "<br><br>");
+
+			// ----- 3. Comparar PROPIEDADES, no objetos -----
+			// obj.valor es un primitivo (string o number), así que aquí vuelven
+			// a aplicarse las reglas del apartado 1.
+
+			// mismo objeto -> misma propiedad: true y true
 			document.writeln("obj1.valor==obj2.valor: " + (obj1.valor==obj2.valor) + "<br>");
 			document.writeln("obj1.valor===obj2.valor: " + (obj1.valor===obj2.valor) + "<br><br>");
+
+			// objetos distintos, pero las dos propiedades son la cadena '5' -> true y true
+			// (los objetos no eran iguales, pero sus propiedades sí)
 			document.writeln("obj1.valor==obj3.valor: " + (obj1.valor==obj3.valor) + "<br>");
 			document.writeln("obj1.valor===obj3.valor: " + (obj1.valor===obj3.valor) + "<br><br>");
+
+			// '5' (string) frente a 5 (number): == convierte -> true; === no convierte -> false
 			document.writeln("obj1.valor==obj4.valor: " + (obj1.valor==obj4.valor) + "<br>");
 			document.writeln("obj1.valor===obj4.valor: " + (obj1.valor===obj4.valor) + "<br><br>");
+
+			// ----- Resumen -----
+			//  · Primitivos: == puede dar true con tipos distintos; === exige mismo tipo.
+			//  · Objetos: == y === se comportan igual, y solo dan true si es el mismo objeto.
+			//  · Para comparar el "contenido" de dos objetos hay que comparar sus propiedades
+			//    una a una (o convertirlos con JSON.stringify, con sus limitaciones).
 		</script>
 	</body>
 </html>
-
-
