@@ -1,0 +1,9 @@
+{
+  "data": [
+    { "id": 1, "title": "To the Faithful Departed", "artist": "The Cranberries", "year": 1996 },
+    { "id": 2, "title": "OK Computer", "artist": "Radiohead", "year": 1997 },
+    { "id": 3, "title": "Ágaetis byrjun", "artist": "Sigur Rós", "year": 1999 },
+    { "id": 4, "title": "Un día en el mundo", "artist": "Vetusta Morla", "year": 2008 },
+    { "id": 5, "title": "El poeta Halley", "artist": "Love of Lesbian", "year": 2016 }
+  ]
+}

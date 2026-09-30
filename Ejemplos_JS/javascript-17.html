@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ejemplo con JavaScript</title>
+	</head>
+	<body>
+		<h1>Ejemplo web service con JavaScript (XMLHttpRequest)</h1>
+		<p>Abre la consola (F12) para ver la respuesta.</p>
+		<script>
+			// ---------------------------------------------------------------
+			// URL del servicio. Deja activa SOLO una de las opciones.
+			// Todas devuelven JSON y permiten CORS desde cualquier origen.
+			// ---------------------------------------------------------------
+			var url = "discs.json";                                     // datos LOCALES (CESAR): discos, devuelve { data: [...] }. Sin Internet. Requiere Live Server
+			// var url = "https://jsonplaceholder.typicode.com/users";           // 10 usuarios de prueba (API muy estable)
+			// var url = "https://pokeapi.co/api/v2/pokemon/pikachu";            // un objeto grande con muchas propiedades anidadas
+
+			var xhttp = new XMLHttpRequest();
+
+			xhttp.open("GET", url, true);
+			// Si queremos mandar parámetros, los metemos en la cabecera y usamos send()
+			xhttp.setRequestHeader("Content-type", "application/json");
+			xhttp.send(null);
+
+			xhttp.onreadystatechange = function() {
+			  if (this.readyState == 4) {
+			    if (this.status == 200) {
+			      console.log(JSON.parse(this.responseText));
+			    } else {
+			      console.error("Error en la petición. Código HTTP:", this.status);
+			    }
+			  }
+			};
+		</script>
+	</body>
+</html>

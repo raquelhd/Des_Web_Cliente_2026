@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+   <head>
+       <title>DOM</title>
+       <meta charset="utf-8">
+       <style>
+          .azul { color: blue; }
+          .verde { color: green; }
+          .negrita { font-weight: bold; }
+       </style>    
+   </head>
+   <body>
+      <!-- Esto es un comentario -->
+      <p style="background:#fff3cd; padding:8px; border:1px solid #e0c060;">
+         <b>Nota:</b> esta página no ejecuta JavaScript. Abre la consola (F12) y pega,
+         una a una, las líneas que hay comentadas al final de este fichero. Observa qué
+         devuelve cada selector: un elemento, una HTMLCollection o una NodeList.
+      </p>
+       <p id="p1" lang="lat" >Lorem ipsum dolor sit amet, consectetur 
+       adipisicing elit. <span id="resaltado">Ut enim ad 
+       minim veniam</span>, quis nostrud exercitation.
+       </p>
+
+       <p class="clase1">Lorem ipsum dolor sit amet, consectetur 
+       et dolore magna aliqua.
+       </p>
+
+       <p class="clase1">Excepteur sint occaecat cupidatat non
+       proident, <span><b>Lorem ipsum</b></span> dolor sit amet.
+       </p>
+
+      <!-- CÓDIGO PARA PEGAR EN LA CONSOLA (F12), línea a línea:
+
+      var sp_resaltado = document.getElementById("resaltado");           // un único elemento (o null)
+      var parrafos = document.getElementsByTagName("p");                 // HTMLCollection "viva" con los 4 <p>
+      var parrafos_clase1 = document.getElementsByClassName("clase1");   // HTMLCollection con los 2 <p class="clase1">
+      var p_c1 = document.querySelector("p.clase1");                     // el PRIMER <p class="clase1">
+      var p_c1_todos = document.querySelectorAll("p.clase1");            // NodeList "estática" con los 2
+
+      Después escribe el nombre de cada variable en la consola para ver su contenido,
+      por ejemplo: parrafos.length  o  p_c1_todos[1].innerHTML
+      -->
+   </body>
+</html>
+
